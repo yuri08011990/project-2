@@ -1,0 +1,22 @@
+from django.http import HttpResponse
+from django.shortcuts import render
+
+# Create your views here.
+
+def home_view(request, *args, **kwargs):
+	return render(request, "home.html", {})
+
+def contact_view(request, *args, **kwargs):
+	return render(request, "contacts.html", {})
+
+def information_view(request, *args, **kwargs):
+	my_context = {
+	"my_text": "This is about me",
+	"my_number": "08011990",
+	"my_list": [256, 512, 1024, 'abcdfg']
+	}
+
+	return render(request, "information.html", my_context)
+
+def regulations_view(request, *args, **kwargs):
+	return render(request, "regulations.html", {})
