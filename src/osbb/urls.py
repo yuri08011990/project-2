@@ -16,25 +16,32 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_view, contact_view, information_view, regulations_view
+from pages.views import home_view
+from pages.views import post_detail_view
+from pages.views import new_post_view
+from pages.views import post_edit_view
+from pages.views import contact_view, information_view, regulations_view
 from products.views import product_detail_view
 from products.views import product_create_view
 from products.views import render_initial_data
 from products.views import dynamic_lookup_view
 from products.views import product_delete_view
 from products.views import product_list_view
+# from blog.views import post_list
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home_view, name='home'),
-    path('contacts/', contact_view),
-    path('information/', information_view),
-    path('regulations/', regulations_view),
-    path('create/', product_create_view),
+    path('contacts/', contact_view, name='contacts'),
+    path('information/', information_view, name='information'),
+    path('regulations/', regulations_view, name= 'regulations'),
+    path('create/', product_create_view,),
     path('product/', product_detail_view),
     path('products/<int:id>/', dynamic_lookup_view, name='product'),
     path('products/<int:id>/delete/', product_delete_view, name='product-delete'),
     path('products/', product_list_view, name='product-list'),
-
+    path('post/<int:pk>/', post_detail_view, name='post_detail'),
+    path('post/new/', new_post_view, name='post_new'),
+    path('post/<int:pk>/edit/', post_edit_view, name='post_edit'),
 ]

@@ -40,7 +40,7 @@
 				padding: 15px 30px;
 			}
 
-			a {
+			.navbutton {
 				text-align: center;
 				color: #ffffff;
 				text-decoration: none;
@@ -48,7 +48,7 @@
 				font-size: 1.2vw;
 			}
 
-			a:hover {
+			.navbutton:hover {
 				color: #f0c330;
 				transition: 0.5s;
 			}
@@ -61,11 +61,11 @@
 		<h1 class="titletext">ОСББ <span class="titletext2">КАРАДЖИЧА, 29</span></h1>
 		<nav>
 			<ul>
-				<li><a href="#">Головна</a></li>
-				<li><a href="#">Інформація</a></li>
-				<li><a href="#">Статут</a></li>
-				<li><a href="#">Контакти</a></li>
-				<li><a href="#">Увійти</a></li>
+				<li><a href="{% url 'home' %}" class="navbutton">Головна</a></li>
+				<li><a href="{% url 'information' %}" class="navbutton">Інформація</a></li>
+				<li><a href="{% url 'regulations' %}" class="navbutton">Статут</a></li>
+				<li><a href="{% url 'contacts' %}" class="navbutton">Контакти</a></li>
+				<li><a href="#" class="navbutton">Увійти</a></li>
 			</ul>
 		</nav>
 	</header>

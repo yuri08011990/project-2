@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Інформація</h1>
-	<p>This is a template</p>
-	<p>
-		{{ my_text }} | {{ my_number }} | {{ my_list}}
-	</p>
-	<ul>
-		{% for my_sub_item in my_list %}
-			<li>{{ forloop.counter}} - {{ my_sub_item }}</li>
-		{% endfor %}
-	</ul>
+	<h1>Сторінка інформації</h1>
+	<h5>Поточний користувач: {{ request.user }}</h5>
+	<h5>Користувач авторизований: {{ request.user.is_authenticated }}</h5>
 {%endblock %}
