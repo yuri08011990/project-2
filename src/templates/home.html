@@ -2,7 +2,7 @@
 
 {% block content %}
 	{% if user.is_authenticated %}
-		<a href="{% url 'post_new' %}">Додати допис</a>
+		<p style="text-align: left"><button><a href="{% url 'post_new' %}">Додати допис</a></button>
 	{% endif %}
 	{% include 'post_list.html' %}
 {%endblock %}

@@ -11,14 +11,31 @@
 				}
 			</style>
 			<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Prata" rel="stylesheet">
-			
 		</head>
 		<div class="post">
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 			<div class="date">
 				{{ post.published_date }}
 			</div>
-			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
 		<hr>
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; Перша</a>
+            <a href="?page={{ posts.previous_page_number }}">Попередня</a>
+        {% endif %}
+
+        <span class="current">
+            Сторінка {{ posts.number }} з {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">Наступна</a>
+            <a href="?page={{ posts.paginator.num_pages }}">Остання &raquo;</a>
+        {% endif %}
+    </span>
+</div>

@@ -1,6 +1,19 @@
 {% extends 'home.html' %}
 
 {% block content %}
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css">
+			h1 a {
+				color: #85AC95;
+				font-family: 'Prata', serif;
+			}
+			.post {
+				font-family: 'Didact Gothic', sans-serif;
+			}
+		</style>
+		<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Prata" rel="stylesheet">
+	</head>
     <div class="post">
         {% if post.published_date %}
             <div class="date">
@@ -10,7 +23,7 @@
         {% if user.is_authenticated %}
         	<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Редагувати допис</a>
         {% endif %}
-        <h1>{{ post.title }}</h1>
+        <h1><a href="">{{ post.title }}</a></h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
 {% endblock %}

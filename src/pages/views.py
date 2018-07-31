@@ -1,3 +1,4 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -11,6 +12,9 @@ from pages.forms import PostForm
 
 def home_view(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	paginator = Paginator(posts, 5) # Число дописів на сторінці
+	page = request.GET.get('page')
+	posts = paginator.get_page(page)
 	return render(request, 'home.html', {'posts': posts})
 
 def post_detail_view(request, pk):
