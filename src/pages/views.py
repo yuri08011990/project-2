@@ -11,7 +11,7 @@ from pages.forms import PostForm
 # 	return render(request, "home.html", {})
 
 def home_view(request):
-	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	paginator = Paginator(posts, 5) # Число дописів на сторінці
 	page = request.GET.get('page')
 	posts = paginator.get_page(page)

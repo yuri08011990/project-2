@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from pages.views import home_view
 from pages.views import post_detail_view
@@ -45,3 +47,6 @@ urlpatterns = [
     path('post/new/', new_post_view, name='post_new'),
     path('post/<int:pk>/edit/', post_edit_view, name='post_edit'),
 ]
+
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
