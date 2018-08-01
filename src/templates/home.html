@@ -2,7 +2,8 @@
 
 {% block content %}
 	{% if user.is_authenticated %}
-		<p style="text-align: left"><button><a href="{% url 'post_new' %}">Додати допис</a></button>
+		<br>
+		<p><a href="{% url 'post_new' %}" class="btn btn-primary" role="button">Створити допис</a></p>
 	{% endif %}
 	{% include 'post_list.html' %}
 {%endblock %}

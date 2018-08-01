@@ -3,7 +3,12 @@
 <html lang="ua">
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/static/css/navbar.css" >
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+				<link rel="stylesheet" type="text/css" href="/static/css/navbar.css" >
 		<title>Навігація</title>
 		<!--<link rel="stylesheet" href="{{ STATIC_URL }}navbar.css" type="text/css">-->
 		<link href="https://fonts.googleapis.com/css?family=Poiret+One|Russo+One" rel="stylesheet">
@@ -16,8 +21,16 @@
 				<li><a href="{% url 'information' %}" class="navbutton">Інформація</a></li>
 				<li><a href="{% url 'regulations' %}" class="navbutton">Статут</a></li>
 				<li><a href="{% url 'contacts' %}" class="navbutton">Контакти</a></li>
-				<li><a href="#" class="navbutton">Увійти</a></li>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'dashboard' %}" class="navbutton">Особистий кабінет</a></li>
+			{% else %}
+				<li><a href="{% url 'login' %}" class="navbutton">Вхід</a></li>
+			{% endif %}
 			</ul>
 		</nav>
 	</header>
+	<body>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
 </html>

@@ -40,7 +40,12 @@ INSTALLED_APPS = [
     'products',
     'pages',
     'blog',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

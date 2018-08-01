@@ -57,3 +57,12 @@ def information_view(request, *args, **kwargs):
 
 def regulations_view(request, *args, **kwargs):
 	return render(request, "regulations.html", {})
+
+def login_view(request, *args, **kwargs):
+    return render(request, "login.html", {})
+
+def registration_view(request, *args, **kwargs):
+    return render(request, "registration.html", {})
+
+def dashboard_view(request, *args, **kwargs):
+    return render(request, "dashboard.html", {})
