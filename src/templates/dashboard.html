@@ -3,5 +3,13 @@
 {% block content %}
 	{% if user.is_authenticated %}
 		<p>Сторінка для особистого кабінету</p>
+		Поточний час {% now "SHORT_DATETIME_FORMAT" %}
+		<br>
+		{% if request.user.is_superuser %}
+			<h5>Поточний користувач: {{ request.user }}</h5>
+			<h5>Користувача авторизовано: {{ request.user.is_authenticated }}</h5>
+			<br>
+		{% endif %}
+		<a href="{% url 'logout' %}" class="btn btn-primary" role="button">Вийти</a>
 	{% endif %}
 {%endblock %}

@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from blog.models import Post
 from pages.forms import PostForm
-from pages.forms import UserLoginForm
+from pages.forms import UserLoginForm, UserRegisterForm
 
 # Create your views here.
 
@@ -66,15 +66,27 @@ def login_view(request, *args, **kwargs):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        # print(request.user.is_authenticated())
+        return redirect("/home")
     return render(request, "login.html", {"form": form, "title": title})
 
 def logout_view(request, *args, **kwargs):
     logout(request)
-    return render(request, "login.html", {})
+    return redirect("/home")
 
 def registration_view(request, *args, **kwargs):
-    return render(request, "login.html", {})
+    title = "Реєстрація"
+    form = UserRegisterForm(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        password = form.cleaned_data.get('password')
+        user.set_password(password)
+        user.save()
+        new_user = authenticate(username=user.username, password=password)
+        login(request, user)
+        return redirect("/home")
+
+    context = {"form": form, "title": title}
+    return render(request, "login.html", context)
 
 def dashboard_view(request, *args, **kwargs):
     return render(request, "dashboard.html", {})
