@@ -2,13 +2,12 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from blog.models import Post
 from pages.forms import PostForm
+from pages.forms import UserLoginForm
 
 # Create your views here.
-
-# def home_view(request, *args, **kwargs):
-# 	return render(request, "home.html", {})
 
 def home_view(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -59,10 +58,23 @@ def regulations_view(request, *args, **kwargs):
 	return render(request, "regulations.html", {})
 
 def login_view(request, *args, **kwargs):
+    # print(request.user.is_authenticated())
+    title = "Вхід"
+    form = UserLoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        # print(request.user.is_authenticated())
+    return render(request, "login.html", {"form": form, "title": title})
+
+def logout_view(request, *args, **kwargs):
+    logout(request)
     return render(request, "login.html", {})
 
 def registration_view(request, *args, **kwargs):
-    return render(request, "registration.html", {})
+    return render(request, "login.html", {})
 
 def dashboard_view(request, *args, **kwargs):
     return render(request, "dashboard.html", {})

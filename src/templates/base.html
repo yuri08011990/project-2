@@ -2,9 +2,11 @@
 <html>
 <head>
 	<title>ОСББ КАРАДЖИЧА, 29 </title>
+	{% block head_extra%}{% endblock head_extra %}
 </head>
 <body>
 	{% include 'navbar.html' %}
 	{% block content %}{%endblock %}
+
 </body>
 </html>

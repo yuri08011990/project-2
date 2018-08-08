@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from pages.views import home_view
 from pages.views import post_detail_view, new_post_view, post_edit_view
 from pages.views import contact_view, information_view, regulations_view
-from pages.views import login_view, registration_view, dashboard_view
+from pages.views import login_view, logout_view, registration_view, dashboard_view
 from products.views import product_detail_view
 from products.views import product_create_view
 from products.views import render_initial_data
@@ -45,6 +45,7 @@ urlpatterns = [
     path('post/new/', new_post_view, name='post_new'),
     path('post/<int:pk>/edit/', post_edit_view, name='post_edit'),
     path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('register/', registration_view, name='register'),
     path('dashboard/', dashboard_view, name='dashboard'),
 ]

@@ -1,10 +1,16 @@
 {% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %}
+	{{ form.media }}
+{% endblock head_extra %}
 
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3">
     <h2>Редагування допису</h2>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
+        
         <button type="submit" class="save btn btn-default">Зберегти</button>
     </form>
 </div>
