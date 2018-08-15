@@ -12,10 +12,11 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        {% if user.is_authenticated %}
+        {% if request.user.is_superuser %}
         	<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Редагувати допис</a>
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">Видалити допис</a>
         {% endif %}
         <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.text|safe }}</p>
     </div>
 {% endblock %}

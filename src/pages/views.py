@@ -1,13 +1,19 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.models import User
 from blog.models import Post
 from pages.forms import PostForm
 from pages.forms import UserLoginForm, UserRegisterForm
 
 # Create your views here.
+
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'dashboard.html', {"user":user})
+
 
 def home_view(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -47,6 +53,10 @@ def post_edit_view(request, pk):
         form = PostForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
 
+def post_delete(request, pk):
+    instance = get_object_or_404(Post, pk=pk)
+    instance.delete()
+    return redirect("/home")
 
 def contact_view(request, *args, **kwargs):
 	return render(request, "contacts.html", {})

@@ -1,11 +1,8 @@
 from django import forms
-from pagedown.widgets import PagedownWidget
 from blog.models import Post
 from django.contrib.auth import authenticate, get_user_model, login, logout
 
 class PostForm(forms.ModelForm):
-	text = forms.CharField(widget=PagedownWidget)
-
 	class Meta:
 		model = Post
 		fields = ('title', 'text',)
@@ -14,8 +11,8 @@ class PostForm(forms.ModelForm):
 User = get_user_model()
 
 class UserLoginForm(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	username = forms.CharField(label="Логін")
+	password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
 
 	def clean(self, *args, **kwargs):
 		username = self.cleaned_data.get("username")

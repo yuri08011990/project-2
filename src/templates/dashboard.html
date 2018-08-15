@@ -2,12 +2,17 @@
 
 {% block content %}
 	{% if user.is_authenticated %}
-		<p>Сторінка для особистого кабінету</p>
+		<h3>Особистий кабінет користувача {{ user.username }}</h3>
 		Поточний час {% now "SHORT_DATETIME_FORMAT" %}
 		<br>
+		<hr>
 		{% if request.user.is_superuser %}
-			<h5>Поточний користувач: {{ request.user }}</h5>
+			<h5>Поточний користувач: {{ user.username }}<br>
+			Електронна адреса: {{ user.email }}<br>
+			Ім'я: {{ user.first_name }}<br>
+			Прізвище: {{ user.last_name }} </h5>
 			<h5>Користувача авторизовано: {{ request.user.is_authenticated }}</h5>
+			</h5><hr>
 			<br>
 		{% endif %}
 		<a href="{% url 'logout' %}" class="btn btn-primary" role="button">Вийти</a>

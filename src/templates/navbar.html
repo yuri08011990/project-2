@@ -22,9 +22,10 @@
 				<li><a href="{% url 'regulations' %}" class="navbutton">Статут</a></li>
 				<li><a href="{% url 'contacts' %}" class="navbutton">Контакти</a></li>
 			{% if user.is_authenticated %}
-				<li><a href="{% url 'dashboard' %}" class="navbutton">Особистий кабінет</a></li>
+				<li><a href="{% url 'dashboard' %}" class="navbutton">Особистий кабінет [{{ request.user }}]</a></li>
 			{% else %}
 				<li><a href="{% url 'login' %}" class="navbutton">Вхід</a></li>
+				<li><a href="{% url 'register' %}" class="navbutton">Реєстрація</a></li>
 			{% endif %}
 			</ul>
 		</nav>
