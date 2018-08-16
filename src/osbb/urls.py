@@ -22,13 +22,6 @@ from pages.views import home_view
 from pages.views import post_detail_view, new_post_view, post_edit_view, post_delete
 from pages.views import contact_view, information_view, regulations_view
 from pages.views import login_view, logout_view, registration_view, dashboard_view
-from products.views import product_detail_view
-from products.views import product_create_view
-from products.views import render_initial_data
-from products.views import dynamic_lookup_view
-from products.views import product_delete_view
-from products.views import product_list_view
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
